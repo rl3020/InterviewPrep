@@ -20,6 +20,8 @@ class DoublyLinkedList:
         self.head = None
         self.tail = None
         
+    
+    # append node to list
     def append(self, data): 
         if self.head is None: 
             self.head = self.Node(data)
