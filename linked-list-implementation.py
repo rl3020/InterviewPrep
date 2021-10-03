@@ -7,6 +7,7 @@ Created on Sat Sep 25 18:20:56 2021
 """
 import random
 
+#linked list
 class DoublyLinkedList: 
     
     class Node: 
