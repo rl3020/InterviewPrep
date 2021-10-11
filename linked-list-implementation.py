@@ -50,9 +50,39 @@ class DoublyLinkedList:
                 
     
     def delete(self, data): 
-        pass
+        
+        
+        
+        prev = None 
+        start = self.head
+        curr_node = start
+        
+        found = False
+        while curr_node: 
+            if curr_node.val == data: 
+                found = True 
+                break 
+            
+            prev = curr_node
+            curr_node = curr_node.next
+        
+        if found:
+            if prev: 
+                prev.next = curr_node.next
+            elif prev == None: 
+                self.head = curr_node.next
+            
+            
+            if curr_node.next: 
+                curr_node.next.prev = prev
+        
+            return curr_node.val
+            
     
     def contains(self, data): 
+        pass
+    
+    def reverse(self): 
         pass
     
     def __str__(self): 
@@ -77,13 +107,19 @@ class DoublyLinkedList:
     
     
 if __name__ == "__main__": 
-    myLL = DoublyLinkedList()
+    myList = DoublyLinkedList()
+    nums_inside = [ ]
     
-    for i in range(10): 
+    for i in range(1): 
         num = random.randint(0, 100)
-        myLL.append(num)
+        nums_inside.append(num)
+        myList.append(num)
         
-    print(myLL)
+    
+    print(myList)
+    print('Deleting: ', nums_inside[0])
+    print(myList.delete(nums_inside[0]))
+    print(myList)
         
 
     
