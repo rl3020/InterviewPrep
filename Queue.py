@@ -25,19 +25,18 @@ class Queue:
         
     def __str__(self): 
         string_rep = "["
-        values = ""
-        
-        curr_node = self.last
+       
+        curr_node = self.first
         while curr_node: 
             
             if curr_node.next != None: 
-                values = ", " + str(curr_node) + values
+                string_rep += str(curr_node) + ", " 
             else:
-                values = str(curr_node) + values
+                string_rep += str(curr_node)
             
             curr_node = curr_node.next 
             
-        string_rep += values
+        
         string_rep += "]"
         return string_rep
     
@@ -48,28 +47,40 @@ class Queue:
             self.first = new_node
             self.last = new_node
         else:
-            new_node.next = self.last 
+            self.last.next = new_node
             self.last = new_node
             
         self.length += 1
     
     def remove(self): 
-        pass
-    
+        if self.length == 0: 
+            raise Exception('Queue is empty! Cannot remove elements.')
+            return
+        else: 
+            result = self.first.val
+            self.first = self.first.next
+            self.length -= 1
+            return result
+        
     def peek(self): 
-        pass
+        return self.first.val 
     
     def isEmpty(self): 
-        pass
+        return self.length == 0 
     
     
 if __name__ == '__main__': 
     q = Queue()
     
-    for i in range(0, 10): 
+    for i in range(0, 5): 
         print("adding: ", i)
         q.add(i)
-    
+        
+    print()
+    print(q)
+    print() 
+    print('dequeing 2xs: ', q.remove(), " ", q.remove())
+    print() 
     print(q)
     
     
