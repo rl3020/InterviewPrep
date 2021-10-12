@@ -151,18 +151,24 @@ class DoublyLinkedList:
             
         self.head = prev_node
             
-    def merge(self, list1, list2): 
+    def merge(self, list2): 
         
         tail_node_of_l1 = None
-        l1_next_node = list1.head
+        l1_next_node = self.head
         
-        
+        # get the tail of the first list
         while l1_next_node: 
             tail_node_of_l1 = l1_next_node
             l1_next_node = l1_next_node.next
-        
-        
             
+        
+        # make the tail of the first list point to head of 2nd list
+        tail_node_of_l1.next = list2.head
+        # make the head of the 2nd list have .prev be tail of 1st list
+        list2.head.prev = tail_node_of_l1
+        
+        #returning Linked List instance 
+        return self
             
     
     def __str__(self): 
@@ -210,6 +216,15 @@ if __name__ == "__main__":
     print("prepending 24: ")
     print(myList)
 
+    second_list = DoublyLinkedList()
+    
+    for i in range(10, 18): 
+        second_list.append(i)
+        
+    print("Second list: ", second_list)
+    print("merging first and second list: ")
+    print(myList.merge(second_list))
+    
     
     
     
