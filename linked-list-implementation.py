@@ -16,6 +16,13 @@ class DoublyLinkedList:
             self.next = nextNode
             self.prev = prev
             
+        def __str__(self): 
+            if self.val == None: 
+                return "None"
+            
+            return str(self.val)
+        
+            
             
     def __init__(self): 
         self.head = None
@@ -46,12 +53,32 @@ class DoublyLinkedList:
             new_node = self.Node(data)
             prev_node.next = new_node
             new_node.prev = prev_node
-            
-                
     
+    def prepend(self, data):
+        if self.head == None: 
+            self.head = self.Node(data)
+            return self.head
+        
+        
+        # set the prev and next pointers for new_node
+        new_node = self.Node(data)
+        new_node.next = self.head
+        new_node.prev = None
+        
+        # adjust original head pointer to have its previous be new_node
+        self.head.prev = new_node
+        
+        # reset the head to point to new_node
+        self.head = new_node
+        
+        return new_node
+        
+    
+    def insert(self): 
+        pass
+    
+        
     def delete(self, data): 
-        
-        
         
         prev = None 
         start = self.head
@@ -80,10 +107,63 @@ class DoublyLinkedList:
             
     
     def contains(self, data): 
-        pass
+        if self.head == None: 
+            return 
+        
+        curr_node = self.head
+        found = False 
+        while curr_node: 
+            if curr_node.val == data :
+                found = True 
+                break
+            
+            curr_node = curr_node.next
+        
+        if found: 
+            return curr_node 
+            
+        
     
     def reverse(self): 
-        pass
+        #base case 
+        if self.head  == None: 
+            return 
+        
+        
+        start = self.head 
+        prev_node = None #keep track of previous node
+        curr_node = start #keep track of current node
+        
+        while curr_node: 
+            
+            # use this as a temp variable to store the next node
+            next_node = curr_node.next
+            
+            # change pointers of current node
+            curr_node.next = prev_node
+            curr_node.prev = next_node
+            
+            # move the prev_node and curr_node
+            prev_node = curr_node
+            curr_node = next_node
+            
+            
+            
+        self.head = prev_node
+            
+    def merge(self, list1, list2): 
+        
+        tail_node_of_l1 = None
+        l1_next_node = list1.head
+        
+        
+        while l1_next_node: 
+            tail_node_of_l1 = l1_next_node
+            l1_next_node = l1_next_node.next
+        
+        
+            
+            
     
     def __str__(self): 
         
@@ -108,19 +188,27 @@ class DoublyLinkedList:
     
 if __name__ == "__main__": 
     myList = DoublyLinkedList()
-    nums_inside = [ ]
+    nums_inside = []
     
-    for i in range(1): 
+    for i in range(10): 
         num = random.randint(0, 100)
-        nums_inside.append(num)
-        myList.append(num)
+        nums_inside.append(i)
+        myList.append(i)
         
     
     print(myList)
-    print('Deleting: ', nums_inside[0])
-    print(myList.delete(nums_inside[0]))
+    print('Deleting 0 : ', myList.delete(nums_inside[0]) ) 
+    print(myList)
+    
+    print("Reversing: ")
+    myList.reverse()
     print(myList)
         
+    print("contains 4? : ", myList.contains(4))
+    
+    myList.prepend(24)
+    print("prepending 24: ")
+    print(myList)
 
     
     
