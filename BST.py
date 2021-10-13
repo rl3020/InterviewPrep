@@ -31,7 +31,7 @@ class Tree:
         if self.root: 
             stack.append(self.root)
             root = self.root
-            
+
             while stack: 
             
                 if root.left and root.left not in visited: 
@@ -112,6 +112,7 @@ if __name__ =='__main__':
     print("numbers inseretd: ", nums_inserted)
     print("my __str__: ", tree)
     print("actual tree: ")
+    
     tree.inOrderTraversal()
 
 
