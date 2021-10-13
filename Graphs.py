@@ -34,12 +34,30 @@ def bfs( root, graph ): # Pass in A, for example
             
     return " ".join( ordered_visit )
 
+def dfs( root, graph, visited=set()): 
+    if root == None: 
+        return 
+    else: 
+        result = _dfs(root, graph)
+        return result
 
+def _dfs(root, graph, visited=set(), ordered=[]): 
 
-def dfs( root ): 
-    pass
+    visited.add(root)
+    if root not in ordered: 
+        ordered.append(root)
 
+    for neighbor in graph[root]: 
+
+        # only visit the neighbor if 
+        # it has not been visited 
+        if neighbor not in visited: 
+            _dfs(neighbor, graph, visited, ordered)
+
+    if len(list(visited)) == len(graph.keys()): 
+        return " ".join(ordered)
+        
 
 if __name__ == '__main__': 
-    print( "Visited graph this order: ", bfs("A", graph) )
-
+    print( "BFS: ", bfs("A", graph) )
+    print( "DFS: ", dfs("A", graph) )
