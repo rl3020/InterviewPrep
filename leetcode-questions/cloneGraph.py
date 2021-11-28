@@ -1,3 +1,10 @@
+
+class Node: 
+
+    def __init__(self, val=None, neighbors=[]): 
+        self.val = val
+        self.neighbors = neighbors
+
 def cloneGraph(node):
     """
     :type node: Node
