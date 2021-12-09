@@ -1,4 +1,9 @@
 from collections import deque 
+
+class TreeNode: 
+    def __init__(self): 
+        pass
+
 class Codec:
 
     def serialize(self, root):
